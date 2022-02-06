@@ -50,6 +50,13 @@ func (l *Devicelist) AVMButtons() []Device {
 	})
 }
 
+// BatteryPowered returns the devices which are battery powered
+func (l *Devicelist) BatteryPowered() []Device {
+	return l.filter(func(d Device) bool {
+		return d.IsBatteryPowered()
+	})
+}
+
 func (l *Devicelist) filter(predicate func(Device) bool) []Device {
 	var filtered []Device
 	for _, d := range l.Devices {

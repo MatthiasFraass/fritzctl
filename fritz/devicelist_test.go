@@ -23,6 +23,7 @@ func TestDeviceFiltering(t *testing.T) {
 		{name: "four thermostats (Issue #56)", xmlfile: "../testdata/devicelist_issue_59.xml", filter: func(d Devicelist) []Device { return d.Thermostats() }, expect: 4},
 		{name: "eight switches (Issue #56)", xmlfile: "../testdata/devicelist_issue_59.xml", filter: func(d Devicelist) []Device { return d.Switches() }, expect: 8},
 		{name: "two avm buttons", xmlfile: "../testdata/devicelist_fritzos07.29.xml", filter: func(d Devicelist) []Device { return d.AVMButtons() }, expect: 2},
+		{name: "six battery powered devices", xmlfile: "../testdata/devicelist_fritzos07.29.xml", filter: func(d Devicelist) []Device { return d.BatteryPowered() }, expect: 6},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			list := mustUnmarshall(t, tc.xmlfile)

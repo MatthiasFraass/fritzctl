@@ -23,9 +23,9 @@ type Thermostat struct {
 	Lock               string     `xml:"lock"`            // Switch locked (box defined)? 1/0 (empty if not known or if there was an error).
 	DeviceLock         string     `xml:"devicelock"`      // Switch locked (device defined)? 1/0 (empty if not known or if there was an error).
 	ErrorCode          string     `xml:"errorcode"`       // Error codes: 0 = OK, 1 = ... see https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AHA-HTTP-Interface.pdf.
-	BatteryLow         string     `xml:"batterylow"`      // "0" if the battery is OK, "1" if it is running low on capacity.
+	BatteryLow         string     `xml:"batterylow"`      // "0" if the battery is OK, "1" if it is running low on capacity. FIXME: With at least FritzOS 7.21 this field is also part f the device element.
 	WindowOpen         string     `xml:"windowopenactiv"` // "1" if detected an open window (usually turns off heating), "0" if not.
-	BatteryChargeLevel string     `xml:"battery"`         // Battery charge level in percent.
+	BatteryChargeLevel string     `xml:"battery"`         // Battery charge level in percent. FIXME: With at least FritzOS 7.21 this field is also part f the device element.
 }
 
 // codebeat:enable[TOO_MANY_IVARS]
