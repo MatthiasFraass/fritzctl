@@ -4,7 +4,6 @@ package fritz
 type Capability int
 
 // Known (specified) device capabilities.
-// see https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AHA-HTTP-Interface.pdf section 3.2 for full list
 const (
 	HANFUNCompatibility Capability = iota
 	_
@@ -21,9 +20,9 @@ const (
 	_
 	HANFUNUnit
 	_
-	SwitchableDevice
-	DimmableDevice
-	ColorSettableDevice
+	_
+	_
+	_
 	_
 	_
 	HumiditySensor
@@ -100,21 +99,6 @@ func (d *Device) HasMicrophone() bool {
 // HasHANFUNUnit returns true if the device has a HAN FUN unit.
 func (d *Device) HasHANFUNUnit() bool {
 	return d.Has(HANFUNUnit)
-}
-
-// IsSwitchableDevice returns true if the device is a switchable device/power plug/actor.
-func (d *Device) IsSwitchableDevice() bool {
-	return d.Has(SwitchableDevice)
-}
-
-// CanBeDimmed returns true if the device can be dimmed somehow (e.g. light intensity, height level, etc.).
-func (d *Device) CanBeDimmed() bool {
-	return d.Has(DimmableDevice)
-}
-
-// CanSetColors returns true if the device can set colors.
-func (d *Device) CanSetColors() bool {
-	return d.Has(ColorSettableDevice)
 }
 
 // CanMeasureHumidity returns true if the device has humidity functionality. Returns false otherwise.
