@@ -1,5 +1,7 @@
 package fritz
 
+import "strconv"
+
 // HkrErrorDescriptions has a translation of error code to a warning/error/status description.
 var HkrErrorDescriptions = map[string]string{
 	"":  "",
@@ -34,9 +36,9 @@ type Thermostat struct {
 // point string, units in °C.
 // If the value cannot be parsed an empty string is returned.
 // If the value if 255, 254 or 253, "?", "ON" or "OFF" is returned, respectively.
-// If the value is greater (less) than 56 (16) a cut-off "28" ("8") is returned.
+// If the value is greater (less) than 50 (0) a cut-off "50" ("0") is returned.
 func (t *Thermostat) FmtMeasuredTemperature() string {
-	return fmtTemperatureHkr(t.Measured)
+	return fmtTemperatureHkr(t.Measured, 0, 100)
 }
 
 // FmtGoalTemperature formats the value of t.Goal as obtained on the xml-over http interface to a floating
@@ -45,7 +47,7 @@ func (t *Thermostat) FmtMeasuredTemperature() string {
 // If the value if 255, 254 or 253, "?", "ON" or "OFF" is returned, respectively.
 // If the value is greater (less) than 56 (16) a cut-off "28" ("8") is returned.
 func (t *Thermostat) FmtGoalTemperature() string {
-	return fmtTemperatureHkr(t.Goal)
+	return fmtTemperatureHkr(t.Goal, 16, 56)
 }
 
 // FmtSavingTemperature formats the value of t.Saving as obtained on the xml-over http interface to a floating
@@ -54,7 +56,7 @@ func (t *Thermostat) FmtGoalTemperature() string {
 // If the value if 255, 254 or 253, "?", "ON" or "OFF" is returned, respectively.
 // If the value is greater (less) than 56 (16) a cut-off "28" ("8") is returned.
 func (t *Thermostat) FmtSavingTemperature() string {
-	return fmtTemperatureHkr(t.Saving)
+	return fmtTemperatureHkr(t.Saving, 16, 56)
 }
 
 // FmtComfortTemperature formats the value of t.Comfort as obtained on the xml-over http interface to a floating
@@ -63,5 +65,20 @@ func (t *Thermostat) FmtSavingTemperature() string {
 // If the value if 255, 254 or 253, "?", "ON" or "OFF" is returned, respectively.
 // If the value is greater (less) than 56 (16) a cut-off "28" ("8") is returned.
 func (t *Thermostat) FmtComfortTemperature() string {
-	return fmtTemperatureHkr(t.Comfort)
+	return fmtTemperatureHkr(t.Comfort, 16, 56)
+}
+
+// State returns 1 in case the thermostat is considered ON, 0 if it is considered OFF (t.Goal == 253)
+// or -1 in case of error or when t.Goal has a value >= 255 (undefined in specs).
+func (t *Thermostat) State() int {
+	f, err := strconv.ParseFloat(t.Goal, 64)
+	if err != nil {
+		return -1
+	}
+	if f == 253 {
+		return 0
+	} else if f >= 255 {
+		return -1
+	}
+	return 1
 }

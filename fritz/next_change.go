@@ -17,7 +17,7 @@ type NextChange struct {
 // If the value if 255, 254 or 253, "?", "ON" or "OFF" is returned, respectively.
 // If the value is greater (less) than 56 (16) a cut-off "28" ("8") is returned.
 func (n *NextChange) FmtGoalTemperature() string {
-	return fmtTemperatureHkr(n.Goal)
+	return fmtTemperatureHkr(n.Goal, 16, 56)
 }
 
 // FmtTimestamp formats the epoch timestamp into a compact readable form. See fmtEpochSecondString.

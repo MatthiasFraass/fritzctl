@@ -13,6 +13,7 @@ func TestFormattingOfTemperaturesRegularRange(t *testing.T) {
 	assert.Equal(t, "20", th.FmtSavingTemperature())
 	assert.Equal(t, "21", th.FmtGoalTemperature())
 	assert.Equal(t, "22", th.FmtComfortTemperature())
+	assert.Equal(t, 1, th.State())
 }
 
 // TestFormattingOfTemperaturesRegularRange tests formatting of the temperature values obtained by AHA interface.
@@ -22,6 +23,7 @@ func TestFormattingOfTemperaturesParseError(t *testing.T) {
 	assert.Equal(t, "", th.FmtSavingTemperature())
 	assert.Equal(t, "", th.FmtGoalTemperature())
 	assert.Equal(t, "", th.FmtComfortTemperature())
+	assert.Equal(t, -1, th.State())
 }
 
 // TestFormattingOfTemperaturesSpecialValueOff tests formatting of the temperature values obtained by AHA interface.
@@ -31,6 +33,7 @@ func TestFormattingOfTemperaturesSpecialValueOff(t *testing.T) {
 	assert.Equal(t, "OFF", th.FmtSavingTemperature())
 	assert.Equal(t, "OFF", th.FmtGoalTemperature())
 	assert.Equal(t, "OFF", th.FmtComfortTemperature())
+	assert.Equal(t, 0, th.State())
 }
 
 // TestFormattingOfTemperaturesSpecialValueOn tests formatting of the temperature values obtained by AHA interface.
@@ -40,22 +43,25 @@ func TestFormattingOfTemperaturesSpecialValueOn(t *testing.T) {
 	assert.Equal(t, "ON", th.FmtSavingTemperature())
 	assert.Equal(t, "ON", th.FmtGoalTemperature())
 	assert.Equal(t, "ON", th.FmtComfortTemperature())
+	assert.Equal(t, 1, th.State())
 }
 
 // TestFormattingOfTemperaturesOutOfRangeHigh tests formatting of the temperature values obtained by AHA interface.
 func TestFormattingOfTemperaturesOutOfRangeHigh(t *testing.T) {
-	th := Thermostat{Measured: "100", Saving: "110", Goal: "111", Comfort: "56"}
-	assert.Equal(t, "28", th.FmtMeasuredTemperature())
+	th := Thermostat{Measured: "112", Saving: "110", Goal: "111", Comfort: "56"}
+	assert.Equal(t, "50", th.FmtMeasuredTemperature())
 	assert.Equal(t, "28", th.FmtSavingTemperature())
 	assert.Equal(t, "28", th.FmtGoalTemperature())
 	assert.Equal(t, "28", th.FmtComfortTemperature())
+	assert.Equal(t, 1, th.State())
 }
 
 // TestFormattingOfTemperaturesOutOfRangeLow tests formatting of the temperature values obtained by AHA interface.
 func TestFormattingOfTemperaturesOutOfRangeLow(t *testing.T) {
-	th := Thermostat{Measured: "1", Saving: "2", Goal: "3", Comfort: "16"}
-	assert.Equal(t, "8", th.FmtMeasuredTemperature())
+	th := Thermostat{Measured: "0", Saving: "2", Goal: "3", Comfort: "16"}
+	assert.Equal(t, "0", th.FmtMeasuredTemperature())
 	assert.Equal(t, "8", th.FmtSavingTemperature())
 	assert.Equal(t, "8", th.FmtGoalTemperature())
 	assert.Equal(t, "8", th.FmtComfortTemperature())
+	assert.Equal(t, 1, th.State())
 }
