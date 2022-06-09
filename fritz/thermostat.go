@@ -68,17 +68,32 @@ func (t *Thermostat) FmtComfortTemperature() string {
 	return fmtTemperatureHkr(t.Comfort, 16, 56)
 }
 
-// State returns 1 in case the thermostat is considered ON, 0 if it is considered OFF (t.Goal == 253)
-// or -1 in case of error or when t.Goal has a value >= 255 (undefined in specs).
+// State returns 1 in case the thermostat is considered ON, 0 if it is considered OFF
+// or -1 in case of error or undefined state.
 func (t *Thermostat) State() int {
-	f, err := strconv.ParseFloat(t.Goal, 64)
-	if err != nil {
-		return -1
+	var err error
+	var f float64
+	var state int = -1 // Default to error state
+
+	for _, val := range []string{t.Measured, t.Goal, t.Saving, t.Comfort} {
+		f, err = strconv.ParseFloat(val, 64)
+		if err != nil {
+			continue
+		}
+		if f < 253 || f == 254 {
+			// If there was at least one successful read of a temperature,
+			// or a temperate is set to the special value for ON,
+			// consider the thermostat ON
+			state = 1
+		} else if f == 253 {
+			// Return state OFF in case one of the values is 253
+			state = 0
+			break
+		} else if f >= 255 {
+			// Return error state in case one of the values is undefined
+			state = -1
+			break
+		}
 	}
-	if f == 253 {
-		return 0
-	} else if f >= 255 {
-		return -1
-	}
-	return 1
+	return state
 }
