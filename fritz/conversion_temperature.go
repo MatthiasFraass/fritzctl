@@ -23,7 +23,7 @@ func fmtTemperatureHkr(th string, min, max float64) string {
 	}
 }
 
-// cappedRawTemperature limits the raw temperature values rage to be withing specific limits
+// cappedRawTemperature limits the raw temperature values rage to be within specific limits
 // as described in:
 // https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AHA-HTTP-Interface.pdf.
 func cappedRawTemperature(v, min, max float64) float64 {

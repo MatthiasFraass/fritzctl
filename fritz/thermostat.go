@@ -73,7 +73,7 @@ func (t *Thermostat) FmtComfortTemperature() string {
 func (t *Thermostat) State() int {
 	var err error
 	var f float64
-	var state int = -1 // Default to error state
+	var state = -1 // Default to error state
 
 	for _, val := range []string{t.Measured, t.Goal, t.Saving, t.Comfort} {
 		f, err = strconv.ParseFloat(val, 64)
