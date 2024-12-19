@@ -1,4 +1,4 @@
-module github.com/bpicode/fritzctl
+module github.com/matthiasfraass/fritzctl
 
 require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.0
