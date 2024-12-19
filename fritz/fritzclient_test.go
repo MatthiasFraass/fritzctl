@@ -65,7 +65,7 @@ func TestClientLoginChallengeThenServerDown(t *testing.T) {
 	client.SessionInfo = session
 	assert.NoError(t, errObtain)
 	server.Close()
-	_, err := client.solveChallenge()
+	err := client.solveChallenge()
 	assert.Error(t, err)
 }
 
