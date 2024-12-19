@@ -10,7 +10,7 @@ const (
 	_
 	_
 	AlertTrigger
-	_
+	AVMButton
 	HeatControl
 	PowerSensor
 	TemperatureSensor
@@ -19,26 +19,36 @@ const (
 	Microphone
 	_
 	HANFUNUnit
+	_
+	_
+	_
+	_
+	_
+	_
+	HumiditySensor
 )
 
 // Device models a smart home device. This corresponds to
 // the single entries of the xml that the FRITZ!Box returns.
 // codebeat:disable[TOO_MANY_IVARS]
 type Device struct {
-	Identifier      string      `xml:"identifier,attr"`      // A unique ID like AIN, MAC address, etc.
-	ID              string      `xml:"id,attr"`              // Internal device ID of the FRITZ!Box.
-	Functionbitmask string      `xml:"functionbitmask,attr"` // Bitmask determining the functionality of the device: bit 6: Comet DECT, HKR, "thermostat", bit 7: energy measurement device, bit 8: temperature sensor, bit 9: switch, bit 10: AVM DECT repeater
-	Fwversion       string      `xml:"fwversion,attr"`       // Firmware version of the device.
-	Manufacturer    string      `xml:"manufacturer,attr"`    // Manufacturer of the device, usually set to "AVM".
-	Productname     string      `xml:"productname,attr"`     // Name of the product, empty for unknown or undefined devices.
-	Present         int         `xml:"present"`              // Device connected (1) or not (0).
-	Name            string      `xml:"name"`                 // The name of the device. Can be assigned in the web gui of the FRITZ!Box.
-	Switch          Switch      `xml:"switch"`               // Only filled with sensible data for switch devices.
-	Powermeter      Powermeter  `xml:"powermeter"`           // Only filled with sensible data for devices with an energy actuator.
-	Temperature     Temperature `xml:"temperature"`          // Only filled with sensible data for devices with a temperature sensor.
-	Thermostat      Thermostat  `xml:"hkr"`                  // Thermostat data, only filled with sensible data for HKR devices.
-	AlertSensor     AlertSensor `xml:"alert"`                // Only filled with sensible data for devices with an alert sensor.
-	Button          Button      `xml:"button"`               // Button data, only filled with sensible data for button devices.
+	Identifier         string      `xml:"identifier,attr"`      // A unique ID like AIN, MAC address, etc.
+	ID                 string      `xml:"id,attr"`              // Internal device ID of the FRITZ!Box.
+	Functionbitmask    string      `xml:"functionbitmask,attr"` // Bitmask determining the functionality of the device: bit 6: Comet DECT, HKR, "thermostat", bit 7: energy measurement device, bit 8: temperature sensor, bit 9: switch, bit 10: AVM DECT repeater
+	Fwversion          string      `xml:"fwversion,attr"`       // Firmware version of the device.
+	Manufacturer       string      `xml:"manufacturer,attr"`    // Manufacturer of the device, usually set to "AVM".
+	Productname        string      `xml:"productname,attr"`     // Name of the product, empty for unknown or undefined devices.
+	Present            int         `xml:"present"`              // Device connected (1) or not (0).
+	Name               string      `xml:"name"`                 // The name of the device. Can be assigned in the web gui of the FRITZ!Box.
+	Switch             Switch      `xml:"switch"`               // Only filled with sensible data for switch devices.
+	Powermeter         Powermeter  `xml:"powermeter"`           // Only filled with sensible data for devices with an energy actuator.
+	Temperature        Temperature `xml:"temperature"`          // Only filled with sensible data for devices with a temperature sensor.
+	Humidity           Humidity    `xml:"humidity"`             // Only filled with sensible data for devices with a humidity sensor.
+	Thermostat         Thermostat  `xml:"hkr"`                  // Thermostat data, only filled with sensible data for HKR devices.
+	AlertSensor        AlertSensor `xml:"alert"`                // Only filled with sensible data for devices with an alert sensor.
+	Button             Button      `xml:"button"`               // Button data, only filled with sensible data for button devices.
+	BatteryLow         string      `xml:"batterylow"`           // "0" if the battery is OK, "1" if it is running low on capacity.
+	BatteryChargeLevel string      `xml:"battery"`              // Battery charge level in percent.
 }
 
 // codebeat:enable[TOO_MANY_IVARS]
@@ -51,6 +61,11 @@ func (d *Device) IsHANFUNCompatible() bool {
 // HasAlertSensor returns true if the device has a sensor that may trigger alerts.
 func (d *Device) HasAlertSensor() bool {
 	return d.Has(AlertTrigger)
+}
+
+// IsAVMButton returns true if the device is an AVM button like the FRITZ!DECT 440 and returns false otherwise.
+func (d *Device) IsAVMButton() bool {
+	return d.Has(AVMButton)
 }
 
 // IsThermostat returns true if the device is recognized to be a HKR device and returns false otherwise.
@@ -86,6 +101,16 @@ func (d *Device) HasMicrophone() bool {
 // HasHANFUNUnit returns true if the device has a HAN FUN unit.
 func (d *Device) HasHANFUNUnit() bool {
 	return d.Has(HANFUNUnit)
+}
+
+// CanMeasureHumidity returns true if the device has humidity functionality. Returns false otherwise.
+func (d *Device) CanMeasureHumidity() bool {
+	return d.Has(HumiditySensor)
+}
+
+// IsBatteryPowered returns true if the device runs on battery. Returns false if not.
+func (d *Device) IsBatteryPowered() bool {
+	return d.BatteryLow != "" && d.BatteryChargeLevel != ""
 }
 
 // Has checks the passed capabilities and returns true iff the device supports all capabilities.

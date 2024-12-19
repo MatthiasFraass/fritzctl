@@ -1,0 +1,236 @@
+<devicelist version="1" fwversion="7.29">
+    <device identifier="08761 0000001" id="16" functionbitmask="35712" fwversion="04.16" manufacturer="AVM" productname="FRITZ!DECT 200">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>SWITCH_1</name>
+        <switch>
+            <state>0</state>
+            <mode>auto</mode>
+            <lock>0</lock>
+            <devicelock>0</devicelock>
+        </switch>
+        <simpleonoff>
+            <state>0</state>
+        </simpleonoff>
+        <powermeter>
+            <voltage>231090</voltage>
+            <power>0</power>
+            <energy>369382</energy>
+        </powermeter>
+        <temperature>
+            <celsius>165</celsius>
+            <offset>0</offset>
+        </temperature>
+    </device>
+    <device identifier="11960 0000002" id="21" functionbitmask="320" fwversion="03.54" manufacturer="AVM" productname="Comet DECT">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>HKR_1</name>
+        <battery>60</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>195</celsius>
+            <offset>0</offset>
+        </temperature>
+        <hkr>
+            <tist>39</tist>
+            <tsoll>32</tsoll>
+            <absenk>32</absenk>
+            <komfort>38</komfort>
+            <lock>0</lock>
+            <devicelock>0</devicelock>
+            <errorcode>0</errorcode>
+            <windowopenactiv>0</windowopenactiv>
+            <windowopenactiveendtime>0</windowopenactiveendtime>
+            <boostactive>0</boostactive>
+            <boostactiveendtime>0</boostactiveendtime>
+            <batterylow>0</batterylow>
+            <battery>60</battery>
+            <nextchange>
+                <endperiod>1644177600</endperiod>
+                <tchange>38</tchange>
+            </nextchange>
+            <summeractive>0</summeractive>
+            <holidayactive>0</holidayactive>
+        </hkr>
+    </device>
+    <device identifier="11795 0000003" id="22" functionbitmask="320" fwversion="03.68" manufacturer="AVM" productname="Comet DECT">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>HKR_2</name>
+        <battery>70</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>145</celsius>
+            <offset>-5</offset>
+        </temperature>
+        <hkr>
+            <tist>29</tist>
+            <tsoll>253</tsoll>
+            <absenk>32</absenk>
+            <komfort>40</komfort>
+            <lock>0</lock>
+            <devicelock>0</devicelock>
+            <errorcode>0</errorcode>
+            <windowopenactiv>0</windowopenactiv>
+            <windowopenactiveendtime>0</windowopenactiveendtime>
+            <boostactive>0</boostactive>
+            <boostactiveendtime>0</boostactiveendtime>
+            <batterylow>0</batterylow>
+            <battery>70</battery>
+            <nextchange>
+                <endperiod>1644177600</endperiod>
+                <tchange>40</tchange>
+            </nextchange>
+            <summeractive>0</summeractive>
+            <holidayactive>0</holidayactive>
+        </hkr>
+    </device>
+    <device identifier="11795 0000004" id="23" functionbitmask="320" fwversion="03.68" manufacturer="AVM" productname="Comet DECT">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>HKR_3</name>
+        <battery>10</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>130</celsius>
+            <offset>-20</offset>
+        </temperature>
+        <hkr>
+            <tist>26</tist>
+            <tsoll>253</tsoll>
+            <absenk>32</absenk>
+            <komfort>37</komfort>
+            <lock>0</lock>
+            <devicelock>0</devicelock>
+            <errorcode>0</errorcode>
+            <windowopenactiv>0</windowopenactiv>
+            <windowopenactiveendtime>0</windowopenactiveendtime>
+            <boostactive>0</boostactive>
+            <boostactiveendtime>0</boostactiveendtime>
+            <batterylow>0</batterylow>
+            <battery>10</battery>
+            <nextchange>
+                <endperiod>1644213600</endperiod>
+                <tchange>37</tchange>
+            </nextchange>
+            <summeractive>0</summeractive>
+            <holidayactive>0</holidayactive>
+        </hkr>
+    </device>
+    <device identifier="11795 0000005" id="24" functionbitmask="320" fwversion="03.68" manufacturer="AVM" productname="Comet DECT">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>HKR_4</name>
+        <battery>1</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>180</celsius>
+            <offset>-10</offset>
+        </temperature>
+        <hkr>
+            <tist>36</tist>
+            <tsoll>34</tsoll>
+            <absenk>32</absenk>
+            <komfort>34</komfort>
+            <lock>0</lock>
+            <devicelock>0</devicelock>
+            <errorcode>0</errorcode>
+            <windowopenactiv>1</windowopenactiv>
+            <windowopenactiveendtime>0</windowopenactiveendtime>
+            <boostactive>0</boostactive>
+            <boostactiveendtime>0</boostactiveendtime>
+            <batterylow>0</batterylow>
+            <battery>1</battery>
+            <nextchange>
+                <endperiod>1644174000</endperiod>
+                <tchange>32</tchange>
+            </nextchange>
+            <summeractive>0</summeractive>
+            <holidayactive>0</holidayactive>
+        </hkr>
+    </device>
+    <device identifier="11657 0000006" id="25" functionbitmask="35712" fwversion="04.17" manufacturer="AVM" productname="FRITZ!DECT 210">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>SWITCH_2</name>
+        <switch>
+            <state>1</state>
+            <mode>manuell</mode>
+            <lock>0</lock>
+            <devicelock>1</devicelock>
+        </switch>
+        <simpleonoff>
+            <state>1</state>
+        </simpleonoff>
+        <powermeter>
+            <voltage>230602</voltage>
+            <power>0</power>
+            <energy>46752</energy>
+        </powermeter>
+        <temperature>
+            <celsius>125</celsius>
+            <offset>0</offset>
+        </temperature>
+    </device>
+    <device identifier="FIZZ BUZZ" id="26" functionbitmask="1048864" fwversion="05.21" manufacturer="AVM" productname="FRITZ!DECT 440">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>BUTTON_1</name>
+        <battery>100</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>175</celsius>
+            <offset>0</offset>
+        </temperature>
+        <humidity>
+            <rel_humidity>54</rel_humidity>
+        </humidity>
+        <button identifier="FIZZ BUZZ-1" id="5008">
+            <name>Taster Bad: Oben rechts</name>
+            <lastpressedtimestamp>1643533662</lastpressedtimestamp>
+        </button>
+        <button identifier="FIZZ BUZZ-3" id="5009">
+            <name>Taster Bad: Unten rechts</name>
+            <lastpressedtimestamp></lastpressedtimestamp>
+        </button>
+        <button identifier="FIZZ BUZZ-5" id="5010">
+            <name>Taster Bad: Unten links</name>
+            <lastpressedtimestamp></lastpressedtimestamp>
+        </button>
+        <button identifier="FIZZ BUZZ-7" id="5011">
+            <name>Taster Bad: Oben links</name>
+            <lastpressedtimestamp></lastpressedtimestamp>
+        </button>
+    </device>
+    <device identifier="FOOFAA" id="27" functionbitmask="1048864" fwversion="05.21" manufacturer="AVM" productname="FRITZ!DECT 440">
+        <present>1</present>
+        <txbusy>0</txbusy>
+        <name>BUTTON_2</name>
+        <battery>100</battery>
+        <batterylow>0</batterylow>
+        <temperature>
+            <celsius>200</celsius>
+            <offset>0</offset>
+        </temperature>
+        <humidity>
+            <rel_humidity>38</rel_humidity>
+        </humidity>
+        <button identifier="FOOFAA-1" id="5000">
+            <name>Taster Wohnzimmer: Oben rechts</name>
+            <lastpressedtimestamp>1643351645</lastpressedtimestamp>
+        </button>
+        <button identifier="FOOFAA-3" id="5001">
+            <name>Taster Wohnzimmer: Unten rechts</name>
+            <lastpressedtimestamp>1642844240</lastpressedtimestamp>
+        </button>
+        <button identifier="FOOFAA-5" id="5002">
+            <name>Taster Wohnzimmer: Unten links</name>
+            <lastpressedtimestamp>1642791540</lastpressedtimestamp>
+        </button>
+        <button identifier="FOOFAA-7" id="5003">
+            <name>Taster Wohnzimmer: Oben links</name>
+            <lastpressedtimestamp>1642763963</lastpressedtimestamp>
+        </button>
+    </device>
+</devicelist>

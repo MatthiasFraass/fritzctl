@@ -1,16 +1,16 @@
 package fritz
 
-import "strconv"
+import (
+	"strconv"
+)
 
-func fmtTemperatureHkr(th string) string {
+func fmtTemperatureHkr(th string, min, max float64) string {
 	f, err := strconv.ParseFloat(th, 64)
 	if err != nil {
 		return ""
 	}
-	return fmtTemperatureWithSpecialBoundaries(f)
-}
+	f = cappedRawTemperature(f, min, max)
 
-func fmtTemperatureWithSpecialBoundaries(f float64) string {
 	switch {
 	case f == 255:
 		return "?"
@@ -18,11 +18,20 @@ func fmtTemperatureWithSpecialBoundaries(f float64) string {
 		return "ON"
 	case f == 253:
 		return "OFF"
-	case f < 16:
-		return "8"
-	case f > 56:
-		return "28"
 	default:
 		return strconv.FormatFloat(f*0.5, 'f', -1, 64)
 	}
+}
+
+// cappedRawTemperature limits the raw temperature values rage to be within specific limits
+// as described in:
+// https://avm.de/fileadmin/user_upload/Global/Service/Schnittstellen/AHA-HTTP-Interface.pdf.
+func cappedRawTemperature(v, min, max float64) float64 {
+	// values above 253 are considered special
+	if v > max && v < 253 {
+		v = max
+	} else if v < min {
+		v = min
+	}
+	return v
 }
