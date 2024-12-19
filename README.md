@@ -3,11 +3,8 @@
 ![fritzctl](/images/fritzctl.png?raw=true "fritzctl")
 
 ---
-**Project is archived and no longer maintained**
-
-Due to a lack of time to work on this project, I have decided to archive it as of April 2021.
-Of course, the source code will stay public.
-Finally, I wish to express my deep gratitude to everyone who contributed. Thanks!
+This is a fork from jayme-github/fritzctl which is a fork from bpicode/fritzctl.
+It now supports the new (not THAT new...) authentication algorithm of AVM for all Fritz Boxes > V7.24. Tested on 8.0
 
 ---
 
@@ -24,9 +21,7 @@ It should work out-of-the-box with most FRITZ!Boxes running a recent FRITZ!OS ve
 
 | FRITZ!Box | FRITZ!OS |
 | --- | --- |
-| FRITZ!Box Fon WLAN 7390 | 06.51, 06.80, 06.83 |
-| FRITZ!Box 6490 Cable | 06.63, 06.83, 06.84, 06.87, 07.00 |
-| FRITZ!Box 7490 | 06.83, 06.90, 06.93 |
+| FRITZ!Box 7530 AX | 08.00 |
 
 ## CI [![Actions](https://github.com/bpicode/fritzctl/workflows/Continuous%20Integration/badge.svg)](https://github.com/bpicode/fritzctl/actions) [![AppVeyor](https://ci.appveyor.com/api/projects/status/k7qqx91w6mja3u7h?svg=true&passingText=Windows%20-%20OK&failingText=Windows%20-%20failed&pendingText=Windows%20-%20pending)](https://ci.appveyor.com/project/bpicode/fritzctl)
 
