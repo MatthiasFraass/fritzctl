@@ -124,10 +124,11 @@ func (client *Client) solveChallenge() error {
 		return fmt.Errorf("failed to login: %w", err)
 	}
 
-	if sid == "0000000000000000" {
-		return fmt.Errorf("wrong username or password")
-	}
 	client.SessionInfo.SID = sid
+	if client.SessionInfo.SID == "0000000000000000" || client.SessionInfo.SID == "" {
+		return fmt.Errorf("challenge not solved, got '%s' as session id, check login data", client.SessionInfo.SID)
+	}
+
 	return nil
 }
 
@@ -182,8 +183,8 @@ func calculatePBKDF2Response(challenge, password string) (string, error) {
 		return "", fmt.Errorf("invalid salt2: %w", err)
 	}
 
-	hash1 := pbkdf2.Key([]byte(password), salt1, iter1, 32, sha256.New)
-	hash2 := pbkdf2.Key(hash1, salt2, iter2, 32, sha256.New)
+	hash1 := pbkdf2.Key([]byte(password), salt1, iter1, sha256.Size, sha256.New)
+	hash2 := pbkdf2.Key(hash1, salt2, iter2, sha256.Size, sha256.New)
 
 	return fmt.Sprintf("%s$%x", parts[4], hash2), nil
 }
